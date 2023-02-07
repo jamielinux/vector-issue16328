@@ -1,0 +1,17 @@
+data_dir = "/var/lib/vector"
+
+[sources.demo_logs]
+type = "demo_logs"
+format = "syslog"
+
+[sinks.to_vector]
+type = "vector"
+version = "2"
+inputs = [ "demo_logs" ]
+address = "vector-source:8686"
+tls.enabled = true
+tls.ca_file = "/etc/vector/ca.pem"
+tls.crt_file = "/etc/vector/cert.pem"
+tls.key_file = "/etc/vector/key.pem"
+tls.verify_certificate = true
+tls.verify_hostname = true

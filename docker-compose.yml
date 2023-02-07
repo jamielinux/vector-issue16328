@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  vector-sink:
+    image: timberio/vector:0.27.0-alpine
+    container_name: vector-sink
+    hostname: vector-sink
+    volumes:
+      - ./vector-sink.toml:/etc/vector/vector.toml:ro
+      - ./tls/root_ca.pem:/etc/vector/ca.pem:ro
+      - ./tls/vector-sink.pem:/etc/vector/cert.pem:ro
+      - ./tls/vector-sink.key.pem:/etc/vector/key.pem:ro
+
+  vector-source:
+    image: timberio/vector:0.27.0-alpine
+    container_name: vector-source
+    hostname: vector-source
+    volumes:
+      - ./vector-source.toml:/etc/vector/vector.toml:ro
+      - ./tls/vector-source.pem:/etc/vector/cert.pem:ro
+      - ./tls/vector-source.key.pem:/etc/vector/key.pem:ro
+      # Use one of the following two lines. root_ca.pem works. vector-sink.pem doesn't.
+      - ./tls/vector-sink.pem:/etc/vector/ca.pem:ro
+      # - ./tls/root_ca.pem:/etc/vector/ca.pem:ro
+
