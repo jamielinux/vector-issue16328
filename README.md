@@ -39,7 +39,6 @@ create vector-source ./vector-source.pem ./vector-source.key.pem --profile leaf 
 ## Run the test case
 
 ```bash
-cd /root
 git clone https://github.com/jamielinux/vector-issue16328.git
 cd vector-issue16328
 docker compose up -d
@@ -55,8 +54,8 @@ vector-sink    | 2023-02-07T17:03:50.375059Z ERROR vector::topology::builder: ms
 ### Test with root cert
 
 To change `tls.ca_file` from a client cert to a root cert, comment out line 24
-and uncomment line 25. The demo logs will begin working (visible in the logs
-for the `vector-source` container).
+and uncomment line 25 in `docker-compose.yml`. The demo logs will begin working
+(visible in the logs for the `vector-source` container).
 
 ``` 
 23    # Use one of the following two lines. root_ca.pem works. vector-sink.pem doesn't.
