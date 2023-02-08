@@ -34,6 +34,7 @@ step certificate create vector-sink ./vector-sink.pem ./vector-sink.key.pem --pr
     --ca ./intermediate_ca.pem  --ca-key ./intermediate_ca.key.pem --bundle
 step certificate create vector-source ./vector-source.pem ./vector-source.key.pem --profile leaf --no-password --insecure \
     --ca ./intermediate_ca.pem  --ca-key ./intermediate_ca.key.pem --bundle
+chmod 0644 *.pem
 ```
 
 ## Run the test case
