@@ -30,9 +30,9 @@ cd tls
 step certificate create --profile root-ca "Root CA" ./root_ca.pem ./root_ca.key.pem --no-password --insecure
 step certificate create --profile intermediate-ca "Intermediate CA" ./intermediate_ca.pem ./intermediate_ca.key.pem \
     --no-password --insecure --ca ./root_ca.pem --ca-key ./root_ca.key.pem
-create vector-sink ./vector-sink.pem ./vector-sink.key.pem --profile leaf --no-password --insecure \
+step certificate create vector-sink ./vector-sink.pem ./vector-sink.key.pem --profile leaf --no-password --insecure \
     --ca ./intermediate_ca.pem  --ca-key ./intermediate_ca.key.pem --bundle
-create vector-source ./vector-source.pem ./vector-source.key.pem --profile leaf --no-password --insecure \
+step certificate create vector-source ./vector-source.pem ./vector-source.key.pem --profile leaf --no-password --insecure \
     --ca ./intermediate_ca.pem  --ca-key ./intermediate_ca.key.pem --bundle
 ```
 
